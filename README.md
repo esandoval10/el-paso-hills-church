@@ -9,7 +9,7 @@ The expected project URL after deployment is:
 https://esandoval10.github.io/el-paso-hills-church/
 
 ## Current scope
-- Modern, midnight-blue and silver design
+- Modern, midnight-blue and platinum-silver design with balanced champagne-gold accents (#D9B66F)
 - Mobile-first layout
 - English/Spanish switching
 - Mobile navigation and homepage sections

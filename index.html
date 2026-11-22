@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d1420" />
+  <meta name="description" content="El Paso Hills Church — bilingual website design prototype. Sample content only." />
+  <title>El Paso Hills Church | Website Concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --night:#0d1420; --night2:#111d2c; --slate:#182333; --steel:#273548; --ivory:#f6f2eb; --mist:#b8c2cf; --gold:#d8ba82; --gold2:#e8d3a8; --outline:rgba(216,186,130,.22); --container:1160px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:88px; }
+    body { margin:0; background:var(--night); color:var(--ivory); font-family:'Inter',system-ui,-apple-system,sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+    body.menu-open { overflow:hidden; }
+    ::selection { background:var(--gold); color:var(--night); }
+    a { color:inherit; text-decoration:none; } button { font:inherit; } button, a { -webkit-tap-highlight-color:transparent; }
+    button:focus-visible, a:focus-visible { outline:2px solid var(--gold); outline-offset:5px; }
+    .shell { width:min(calc(100% - 42px),var(--container)); margin-inline:auto; }
+    .eyebrow { text-transform:uppercase; color:var(--gold); letter-spacing:.22em; font-size:10px; font-weight:700; line-height:1.5; }
+    .display, h1, h2, h3, blockquote { font-family:'Cormorant Garamond',Georgia,serif; font-weight:500; letter-spacing:-.023em; }
+    h1,h2,h3,p { margin-top:0; }
+    h2 { font-size:clamp(43px,6vw,74px); line-height:.98; margin-bottom:20px; }
+    p { color:var(--mist); line-height:1.84; font-size:14px; }
+    .muted { color:var(--mist); }
+    .notice { position:relative; z-index:60; background:#23354a; border-bottom:1px solid var(--outline); font-size:10px; font-weight:600; letter-spacing:.1em; text-align:center; color:#e9dcbf; padding:9px 15px; }
+    .site-header { position:absolute; z-index:50; inset:29px 0 auto; height:95px; border-bottom:1px solid rgba(255,255,255,.12); }
+    .header-inner { display:flex; height:100%; justify-content:space-between; align-items:center; gap:25px; }
+    .brand { display:flex; align-items:center; gap:13px; flex-shrink:0; }
+    .brand-mark { width:37px; height:44px; display:block; overflow:visible; }
+    .brand-name { display:flex; flex-direction:column; line-height:1; }
+    .brand-name strong { font-family:'Cormorant Garamond',Georgia,serif; font-size:24px; font-weight:600; letter-spacing:.025em; white-space:nowrap; }
+    .brand-name small { margin-top:5px; color:var(--gold); font-size:8px; letter-spacing:.43em; font-weight:700; }
+    .desktop-nav { display:flex; align-items:center; gap:28px; margin-left:auto; }
+    .desktop-nav a { font-size:11px; font-weight:600; color:rgba(246,242,235,.84); transition:color .2s; }
+    .desktop-nav a:hover, .desktop-nav a:focus-visible { color:var(--gold); }
+    .header-actions { display:flex; gap:18px; align-items:center; }
+    .langs { display:flex; align-items:center; gap:8px; padding:8px 0; }
+    .langs button { background:transparent; color:#c8d0dc; border:0; cursor:pointer; font-size:11px; font-weight:700; letter-spacing:.07em; padding:6px 2px; opacity:.58; }
+    .langs button.active { color:var(--gold2); opacity:1; }
+    .langs i { width:1px; height:13px; background:#a4acb7; opacity:.5; }
+    .menu-toggle { display:none; background:transparent; border:1px solid var(--outline); border-radius:2px; height:39px; width:42px; color:var(--ivory); cursor:pointer; align-items:center; justify-content:center; }
+    .menu-toggle svg { width:22px; height:22px; }
+    .mobile-menu { position:fixed; z-index:49; top:0; left:0; right:0; bottom:0; padding:145px 25px 50px; background:#0d1420f5; backdrop-filter:blur(24px); opacity:0; visibility:hidden; transform:translateY(-12px); transition:opacity .25s,transform .25s,visibility .25s; }
+    .mobile-menu.open { opacity:1; visibility:visible; transform:translateY(0); }
+    .mobile-menu nav { display:flex; flex-direction:column; gap:0; }
+    .mobile-menu a { padding:19px 0; border-bottom:1px solid var(--outline); font-family:'Cormorant Garamond',serif; font-size:31px; }
+    .mobile-menu .fine { font-size:11px; color:var(--mist); letter-spacing:.06em; margin-top:30px; }
+    .hero { position:relative; min-height:760px; min-height:min(850px,95svh); display:flex; align-items:center; overflow:hidden; isolation:isolate; padding-top:120px; background:#111a27; }
+    .hero-picture { position:absolute; inset:0; z-index:-3; background: radial-gradient(circle at 78% 24%,rgba(200,157,99,.34),transparent 23%),radial-gradient(ellipse at 60% 45%,#354456,#101622 58%); }
+    .hero-picture:after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(8,15,24,.96) 0%,rgba(8,15,24,.79) 34%,rgba(8,15,24,.36) 72%,rgba(8,15,24,.23)),linear-gradient(0deg,#0d1420 0%,transparent 35%,rgba(0,0,0,.26) 100%); }
+    .hero-picture img { width:100%; height:100%; object-fit:cover; object-position:55% 43%; filter:saturate(.75) brightness(.84); }
+    .hero-content { padding:110px 0 140px; position:relative; }
+    .rule-kicker { display:flex; align-items:center; gap:17px; }
+    .rule-kicker:before { content:""; display:block; width:35px; height:1px; background:var(--gold); }
+    h1 { font-size:clamp(72px,9.1vw,148px); line-height:.82; max-width:840px; margin:32px 0 29px; }
+    h1 em { font-weight:400; color:var(--gold2); }
+    .hero-copy { max-width:470px; font-size:15px; line-height:1.9; color:#e0e1e1; margin-bottom:34px; }
+    .buttons { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+    .btn { min-height:48px; display:inline-flex; align-items:center; justify-content:center; gap:19px; padding:14px 23px; border:1px solid transparent; border-radius:2px; color:var(--night); font-size:11px; font-weight:700; letter-spacing:.06em; transition:background .25s,color .25s,transform .25s; cursor:pointer; }
+    .btn:hover { transform:translateY(-2px); }
+    .btn-primary { background:var(--gold); }
+    .btn-primary:hover { background:var(--gold2); }
+    .btn-outline { color:var(--ivory); background:rgba(13,20,32,.15); border-color:rgba(246,242,235,.4); }
+    .btn-outline:hover { border-color:var(--gold); color:var(--gold); }
+    .btn svg { width:15px; height:15px; stroke-width:1.6; }
+    .hero-foot { position:absolute; bottom:34px; left:0; right:0; display:flex; justify-content:space-between; align-items:center; color:#d3cfc7; font-size:10px; font-weight:600; letter-spacing:.16em; }
+    .hero-foot span:last-child { display:flex; gap:9px; align-items:center; }
+    .hero-foot svg { width:18px; height:18px; color:var(--gold); }
+    .gold-rule { height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:.45; }
+    .section { padding:120px 0; position:relative; }
+    .intro-grid { display:grid; grid-template-columns:minmax(0,.96fr) minmax(0,1.04fr); gap:clamp(40px,9vw,145px); align-items:center; }
+    .photo-frame { position:relative; aspect-ratio:4/4.5; background:#2d3b4b; overflow:hidden; }
+    .photo-frame img, .image-card img, .city-photo img { width:100%; height:100%; object-fit:cover; display:block; }
+    .photo-frame img { filter:saturate(.65) brightness(.82); }
+    .photo-frame:after { content:""; position:absolute; inset:0; box-shadow:inset 0 0 0 1px rgba(255,255,255,.13); pointer-events:none; }
+    .photo-edge { position:absolute; z-index:2; width:80px; height:80px; border:1px solid var(--gold); border-right:0; border-bottom:0; left:-22px; top:-22px; pointer-events:none; }
+    .photo-caption { font-size:9px; letter-spacing:.12em; color:var(--mist); margin-top:15px; text-transform:uppercase; }
+    .intro-copy { max-width:510px; }
+    .intro-copy .lead { font-family:'Cormorant Garamond',serif; font-size:clamp(24px,3.1vw,34px); line-height:1.26; color:var(--ivory); margin-bottom:21px; }
+    .three-pillars { display:flex; gap:30px; margin-top:41px; padding-top:26px; border-top:1px solid var(--outline); }
+    .pillar { display:flex; align-items:center; gap:10px; font-size:11px; font-weight:600; color:#e5e4df; }
+    .pillar svg { width:20px; height:20px; color:var(--gold); stroke-width:1.4; }
+    .visit { background:var(--slate); border-top:1px solid rgba(255,255,255,.03); border-bottom:1px solid rgba(255,255,255,.04); }
+    .section-heading { max-width:720px; }
+    .visit-top { display:flex; align-items:end; justify-content:space-between; gap:30px; margin-bottom:49px; }
+    .visit-top h2 { margin-bottom:0; }
+    .visit-top p { max-width:300px; margin-bottom:0; }
+    .visit-cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border:1px solid var(--outline); }
+    .visit-card { min-height:218px; padding:35px 34px; border-right:1px solid var(--outline); }
+    .visit-card:last-child { border:0; }
+    .visit-icon { color:var(--gold); margin-bottom:38px; width:25px; height:25px; stroke-width:1.4; }
+    .visit-card h3 { font-size:28px; margin:0 0 9px; }
+    .visit-card p { font-size:12px; line-height:1.75; margin:0; }
+    .placeholder-pill { display:inline-block; margin-top:13px; color:var(--gold2); border:1px solid rgba(216,186,130,.3); background:rgba(216,186,130,.06); padding:7px 9px; font-size:10px; font-weight:600; }
+    .quote-section { text-align:center; padding:116px 0; position:relative; background:radial-gradient(ellipse at center,#172638 0%,var(--night) 68%); }
+    .quote-section .crossline { width:1px; height:52px; background:var(--gold); margin:0 auto 30px; }
+    blockquote { max-width:820px; margin:22px auto 26px; font-size:clamp(39px,5.2vw,68px); line-height:1.08; }
+    blockquote em { color:var(--gold2); }
+    .mini-label { font-size:10px; text-transform:uppercase; letter-spacing:.16em; color:var(--mist); }
+    .connect-head { display:flex; align-items:end; justify-content:space-between; gap:25px; margin-bottom:36px; }
+    .connect-head h2 { margin:0; }
+    .connect-head p { max-width:340px; margin:0; }
+    .feature-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    .feature-card { border:1px solid var(--outline); background:#152132; padding:31px; min-height:286px; display:flex; flex-direction:column; }
+    .feature-card .num { color:var(--gold); font-size:11px; font-weight:600; letter-spacing:.13em; }
+    .feature-card h3 { font-size:37px; margin:auto 0 8px; }
+    .feature-card p { font-size:12px; line-height:1.75; margin:0 0 24px; }
+    .feature-bottom { display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--outline); padding-top:17px; color:var(--gold2); font-size:10px; letter-spacing:.11em; text-transform:uppercase; font-weight:700; }
+    .feature-bottom svg { width:15px; height:15px; }
+    .city-block { position:relative; margin-top:110px; overflow:hidden; background:#182738; min-height:435px; display:flex; align-items:center; isolation:isolate; }
+    .city-photo { position:absolute; inset:0; z-index:-2; background:radial-gradient(circle at 72% 38%,rgba(206,125,74,.3),transparent 23%),linear-gradient(125deg,#203750,#101929); }
+    .city-photo img { filter:saturate(.68) brightness(.63); }
+    .city-photo:after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(13,20,32,.94),rgba(13,20,32,.66) 58%,rgba(13,20,32,.13)); }
+    .city-inner { width:100%; padding:75px 0; }
+    .city-inner h2 { max-width:700px; margin:19px 0 23px; }
+    .city-inner p { max-width:440px; margin:0; }
+    .site-footer { background:#0b111b; padding:65px 0 27px; }
+    .footer-top { display:flex; align-items:start; justify-content:space-between; gap:30px; padding-bottom:61px; }
+    .footer-tagline { max-width:310px; font-family:'Cormorant Garamond',serif; color:#e8e1d6; font-size:26px; line-height:1.18; margin:29px 0 0; }
+    .footer-links { display:flex; gap:72px; }
+    .footer-links > div { display:flex; flex-direction:column; gap:15px; }
+    .footer-links strong { text-transform:uppercase; font-size:10px; letter-spacing:.15em; color:var(--gold); margin-bottom:7px; }
+    .footer-links a,.footer-links span { color:var(--mist); font-size:11px; }
+    .footer-links a:hover { color:var(--gold); }
+    .footer-bottom { border-top:1px solid var(--outline); padding-top:22px; display:flex; justify-content:space-between; gap:14px; color:#919cae; font-size:10px; }
+    .reveal { opacity:0; transform:translateY(18px); transition:opacity .7s ease,transform .7s ease; }
+    .reveal.in-view { opacity:1; transform:none; }
+    @media (min-width:1440px) { .hero { min-height:840px; } }
+    @media (max-width:960px) { .desktop-nav { gap:16px; } .desktop-nav a { font-size:10px; } .brand-name strong { font-size:20px; } .intro-grid { gap:55px; } .footer-links { gap:40px; } }
+    @media (max-width:760px) {
+      .site-header { height:76px; } .desktop-nav { display:none; } .menu-toggle { display:flex; }
+      .header-actions { gap:16px; } .brand-mark { width:30px; height:37px; } .brand-name strong { font-size:19px; } .brand-name small { font-size:7px; }
+      .hero { min-height:760px; min-height:94svh; padding-top:72px; align-items:end; }
+      .hero-picture img { object-position:63% center; }
+      .hero-picture:after { background:linear-gradient(0deg,#0d1420 0%,rgba(8,15,24,.91) 18%,rgba(8,15,24,.46) 65%,rgba(8,15,24,.43) 100%),linear-gradient(90deg,rgba(8,15,24,.45),transparent); }
+      .hero-content { padding:195px 0 155px; } h1 { font-size:clamp(67px,13.6vw,104px); margin:26px 0 22px; max-width:620px; }
+      .hero-copy { font-size:14px; max-width:430px; } .hero-foot { bottom:29px; }
+      .section { padding:85px 0; } .intro-grid { grid-template-columns:1fr; gap:52px; } .photo-frame { aspect-ratio:1.15; } .intro-copy { max-width:610px; }
+      .visit-top,.connect-head { display:block; } .visit-top p,.connect-head p { margin-top:20px; max-width:480px; }
+      .visit-cards { grid-template-columns:1fr; } .visit-card { min-height:auto; padding:26px; border-right:0; border-bottom:1px solid var(--outline); } .visit-card:last-child { border-bottom:0; }
+      .visit-icon { margin-bottom:15px; } .feature-grid { grid-template-columns:1fr; } .feature-card { min-height:210px; } .feature-card h3 { margin-top:25px; }
+      .city-block { min-height:385px; margin-top:65px; } .quote-section { padding:90px 0; }
+      .footer-top { display:block; } .footer-links { margin-top:45px; }
+    }
+    @media (max-width:450px) {
+      .shell { width:calc(100% - 42px); } .brand { gap:9px; }
+      .brand-mark { width:26px; } .brand-name strong { font-size:17px; }
+      .site-header { inset:29px 0 auto; }
+      .header-actions { gap:12px; } .menu-toggle { width:39px; height:39px; }
+      h1 { font-size:clamp(65px,16.4vw,87px); line-height:.86; } h2 { font-size:49px; }
+      .hero { min-height:730px; min-height:94svh; } .hero-content { padding-top:170px; padding-bottom:125px; }
+      .hero-copy { font-size:13px; line-height:1.75; }
+      .hero-foot { font-size:8px; letter-spacing:.08em; }
+      .eyebrow { font-size:9px; } .rule-kicker:before { width:23px; }
+      .three-pillars { gap:15px; flex-wrap:wrap; } .pillar { font-size:10px; }
+      .btn { padding:14px 16px; font-size:10px; min-height:46px; }
+      .footer-links { justify-content:space-between; gap:20px; } .footer-bottom { flex-direction:column; }
+    }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*:before,*:after { animation-duration:.01ms!important; transition-duration:.01ms!important; } .reveal { opacity:1; transform:none; } }
+  </style>
+</head>
+<body>
+  <div class="notice" data-i18n="notice">DESIGN PREVIEW · SAMPLE IMAGES & TEXT · NOT THE LIVE CHURCH WEBSITE</div>
+  <header class="site-header" id="top">
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="El Paso Hills Church home">
+        <svg class="brand-mark" viewBox="0 0 38 48" fill="none" aria-hidden="true"><path d="M19 2v24M10 12h18" stroke="#D8BA82" stroke-width="1.5"/><path d="M3 42 14 30l8 7 7-12 6 17H3Z" stroke="#D8BA82" stroke-width="1.5"/><path d="M3 46h32" stroke="#D8BA82" stroke-width="1.5"/></svg>
+        <span class="brand-name"><strong>EL PASO HILLS</strong><small>CHURCH</small></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#home" data-i18n="navHome">Home</a><a href="#about" data-i18n="navAbout">About</a><a href="#visit" data-i18n="navVisit">Plan a Visit</a><a href="#connect" data-i18n="navConnect">Connect</a><a href="#contact" data-i18n="navContact">Contact</a>
+      </nav>
+      <div class="header-actions"><div class="langs" role="group" aria-label="Language / Idioma"><button id="lang-en" class="active" type="button" aria-pressed="true">EN</button><i aria-hidden="true"></i><button id="lang-es" type="button" aria-pressed="false">ES</button></div>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path id="menu-icon-1" d="M4 7h16"/><path id="menu-icon-2" d="M4 12h16"/><path id="menu-icon-3" d="M4 17h16"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true"><nav aria-label="Mobile navigation"><a href="#home" data-i18n="navHome">Home</a><a href="#about" data-i18n="navAbout">About</a><a href="#visit" data-i18n="navVisit">Plan a Visit</a><a href="#connect" data-i18n="navConnect">Connect</a><a href="#contact" data-i18n="navContact">Contact</a></nav><p class="fine" data-i18n="previewSmall">Concept design · Details to be confirmed</p></div>
+  <main>
+    <section class="hero" id="home" aria-label="Welcome">
+      <div class="hero-picture"><img src="https://images.unsplash.com/photo-1593270250444-38e5a72aed41?auto=format&amp;fit=crop&amp;w=2000&amp;q=84" alt="Example worship gathering — stock photograph, not El Paso Hills Church" fetchpriority="high" onerror="this.style.display='none'" /></div>
+      <div class="shell hero-content">
+        <span class="eyebrow rule-kicker" data-i18n="heroEyebrow">Welcome to El Paso Hills Church</span>
+        <h1 data-i18n-html="heroTitle">Find your<br/><em>place here.</em></h1>
+        <p class="hero-copy" data-i18n="heroDescription">A place to grow in faith, build meaningful connections, and find community. Wherever you are in life, you're welcome here.</p>
+        <div class="buttons"><a class="btn btn-primary" href="#visit"><span data-i18n="heroPrimary">Plan Your Visit</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a><a class="btn btn-outline" href="#about" data-i18n="heroSecondary">Discover Our Church</a></div>
+      </div>
+      <div class="shell hero-foot"><span data-i18n="heroFootLeft">ONE COMMUNITY · SHARED FAITH</span><span data-i18n="scroll">SCROLL TO EXPLORE <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></span></div>
+    </section>
+    <div class="gold-rule"></div>
+    <section class="section" id="about"><div class="shell intro-grid">
+      <div class="reveal"><div style="position:relative"><span class="photo-edge"></span><div class="photo-frame"><img src="https://images.unsplash.com/photo-1729089049653-24312fdca908?auto=format&amp;fit=crop&amp;w=1100&amp;q=84" alt="Sample photo of a group praying together" loading="lazy" onerror="this.style.display='none'" /></div></div><p class="photo-caption" data-i18n="photoCaption">A glimpse of community · Illustrative photography</p></div>
+      <div class="intro-copy reveal"><div class="eyebrow" data-i18n="aboutEyebrow">Welcome home</div><h2 data-i18n-html="aboutTitle">Faith is a journey.<br/><em>Walk it together.</em></h2><p class="lead" data-i18n="aboutLead">More than a place to attend, a community to belong to.</p><p data-i18n="aboutBody">Every story matters. Every person matters. We envision a space where people can grow, ask questions, build friendships, and discover a deeper sense of purpose.</p><div class="three-pillars"><span class="pillar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 12h16M12 4v16"/></svg><span data-i18n="pillar1">Faith</span></span><span class="pillar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2"/><path d="M2 21v-3a6 6 0 0 1 12 0v3m0-7a5 5 0 0 1 8 4v3"/></svg><span data-i18n="pillar2">Community</span></span><span class="pillar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 21s-9-4.5-9-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.5-9 11-9 11Z"/></svg><span data-i18n="pillar3">Purpose</span></span></div></div>
+    </div></section>
+    <section class="section visit" id="visit"><div class="shell"><div class="visit-top reveal"><div><span class="eyebrow" data-i18n="visitEyebrow">Your first visit</span><h2 data-i18n-html="visitTitle">Come as you are.<br/><em>We're glad you're here.</em></h2></div><p data-i18n="visitIntro">Finding a church should feel welcoming. Here's where guests will find everything they need before visiting.</p></div>
+      <div class="visit-cards reveal">
+        <div class="visit-card"><svg class="visit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h3 data-i18n="timesTitle">Service Times</h3><p data-i18n="timesDescription">Worship schedules will be published here.</p><span class="placeholder-pill" data-i18n="toBeAdded">Details to be added</span></div>
+        <div class="visit-card"><svg class="visit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 21s7-6 7-12a7 7 0 0 0-14 0c0 6 7 12 7 12Z"/><circle cx="12" cy="9" r="2"/></svg><h3 data-i18n="locationTitle">Find Us</h3><p data-i18n="locationDescription">The address and directions will appear here.</p><span class="placeholder-pill" data-i18n="toBeAdded">Details to be added</span></div>
+        <div class="visit-card"><svg class="visit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 20v-2a6 6 0 0 1 12 0v2M9 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm9-4h4m-2-2v4M16 20h6"/></svg><h3 data-i18n="expectTitle">What to Expect</h3><p data-i18n="expectDescription">A welcoming guide for first-time visitors, customized with the church's information.</p><span class="placeholder-pill" data-i18n="toBeAdded">Details to be added</span></div>
+      </div>
+    </div></section>
+    <section class="quote-section"><div class="shell reveal"><div class="crossline"></div><div class="eyebrow" data-i18n="quoteEyebrow">A simple invitation</div><blockquote data-i18n-html="quote">Come with questions.<br/>Leave with <em>connection.</em></blockquote><div class="mini-label" data-i18n="quoteSub">A sample message to be refined with the church</div></div></section>
+    <section class="section" id="connect"><div class="shell"><div class="connect-head reveal"><div><span class="eyebrow" data-i18n="connectEyebrow">Stay connected</span><h2 data-i18n-html="connectTitle">Life happens<br/><em>together.</em></h2></div><p data-i18n="connectIntro">As the church grows its online presence, these sections can be enabled one at a time.</p></div>
+      <div class="feature-grid reveal">
+        <div class="feature-card"><span class="num">01 /</span><h3 data-i18n="feature1Title">Messages</h3><p data-i18n="feature1Body">Watch recent sermons and revisit meaningful conversations.</p><div class="feature-bottom"><span data-i18n="futureFeature">Planned feature</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div>
+        <div class="feature-card"><span class="num">02 /</span><h3 data-i18n="feature2Title">Ministries</h3><p data-i18n="feature2Body">Find opportunities to grow, serve, and build relationships.</p><div class="feature-bottom"><span data-i18n="futureFeature">Planned feature</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div>
+        <div class="feature-card"><span class="num">03 /</span><h3 data-i18n="feature3Title">Events</h3><p data-i18n="feature3Body">Stay up to date with gatherings, special services, and community events.</p><div class="feature-bottom"><span data-i18n="futureFeature">Planned feature</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div>
+      </div>
+      <div class="city-block" id="contact"><div class="city-photo"><img src="https://images.unsplash.com/photo-1707863313405-0a153bef3383?auto=format&amp;fit=crop&amp;w=1700&amp;q=82" alt="El Paso skyline at sunset — sample local photography" loading="lazy" onerror="this.style.display='none'" /></div><div class="shell city-inner reveal"><span class="eyebrow" data-i18n="cityEyebrow">El Paso Hills Church</span><h2 data-i18n-html="cityTitle">The next chapter<br/><em>starts here.</em></h2><p data-i18n="cityBody">Church address, contact information, and social media links will be added as soon as they're provided.</p></div></div>
+    </div></section>
+  </main>
+  <footer class="site-footer"><div class="shell"><div class="footer-top"><div><a class="brand" href="#top" aria-label="El Paso Hills Church home"><svg class="brand-mark" viewBox="0 0 38 48" fill="none" aria-hidden="true"><path d="M19 2v24M10 12h18" stroke="#D8BA82" stroke-width="1.5"/><path d="M3 42 14 30l8 7 7-12 6 17H3Z" stroke="#D8BA82" stroke-width="1.5"/><path d="M3 46h32" stroke="#D8BA82" stroke-width="1.5"/></svg><span class="brand-name"><strong>EL PASO HILLS</strong><small>CHURCH</small></span></a><p class="footer-tagline" data-i18n="footerTag">A place to belong. A faith to grow.</p></div><div class="footer-links"><div><strong data-i18n="footerExplore">Explore</strong><a href="#about" data-i18n="navAbout">About</a><a href="#visit" data-i18n="navVisit">Plan a Visit</a><a href="#connect" data-i18n="navConnect">Connect</a></div><div><strong data-i18n="footerInfo">Information</strong><span data-i18n="footerTimes">Service schedule: coming soon</span><span data-i18n="footerAddress">Address: coming soon</span><span data-i18n="footerContact">Contact: coming soon</span></div></div></div><div class="footer-bottom"><span>© <span id="year"></span> El Paso Hills Church · <span data-i18n="footerConcept">Website concept only</span></span><span data-i18n="footerDisclaimer">Stock images depict other locations and people. All text is provisional.</span></div></div></footer>
+  <script>
+    (() => {
+      'use strict';
+      const translations = {
+        en: {
+          notice:'DESIGN PREVIEW · SAMPLE IMAGES & TEXT · NOT THE LIVE CHURCH WEBSITE',
+          navHome:'Home',navAbout:'About',navVisit:'Plan a Visit',navConnect:'Connect',navContact:'Contact',previewSmall:'Concept design · Details to be confirmed',
+          heroEyebrow:'Welcome to El Paso Hills Church',heroTitle:'Find your<br/><em>place here.</em>',heroDescription:"A place to grow in faith, build meaningful connections, and find community. Wherever you are in life, you're welcome here.",heroPrimary:'Plan Your Visit',heroSecondary:'Discover Our Church',heroFootLeft:'ONE COMMUNITY · SHARED FAITH',scroll:'SCROLL TO EXPLORE',
+          photoCaption:'A glimpse of community · Illustrative photography',aboutEyebrow:'Welcome home',aboutTitle:'Faith is a journey.<br/><em>Walk it together.</em>',aboutLead:'More than a place to attend, a community to belong to.',aboutBody:'Every story matters. Every person matters. We envision a space where people can grow, ask questions, build friendships, and discover a deeper sense of purpose.',pillar1:'Faith',pillar2:'Community',pillar3:'Purpose',
+          visitEyebrow:'Your first visit',visitTitle:"Come as you are.<br/><em>We're glad you're here.</em>",visitIntro:"Finding a church should feel welcoming. Here's where guests will find everything they need before visiting.",timesTitle:'Service Times',timesDescription:'Worship schedules will be published here.',locationTitle:'Find Us',locationDescription:'The address and directions will appear here.',expectTitle:'What to Expect',expectDescription:"A welcoming guide for first-time visitors, customized with the church's information.",toBeAdded:'Details to be added',
+          quoteEyebrow:'A simple invitation',quote:'Come with questions.<br/>Leave with <em>connection.</em>',quoteSub:'A sample message to be refined with the church',
+          connectEyebrow:'Stay connected',connectTitle:'Life happens<br/><em>together.</em>',connectIntro:'As the church grows its online presence, these sections can be enabled one at a time.',feature1Title:'Messages',feature1Body:'Watch recent sermons and revisit meaningful conversations.',feature2Title:'Ministries',feature2Body:'Find opportunities to grow, serve, and build relationships.',feature3Title:'Events',feature3Body:'Stay up to date with gatherings, special services, and community events.',futureFeature:'Planned feature',
+          cityEyebrow:'El Paso Hills Church',cityTitle:'The next chapter<br/><em>starts here.</em>',cityBody:"Church address, contact information, and social media links will be added as soon as they're provided.",
+          footerTag:'A place to belong. A faith to grow.',footerExplore:'Explore',footerInfo:'Information',footerTimes:'Service schedule: coming soon',footerAddress:'Address: coming soon',footerContact:'Contact: coming soon',footerConcept:'Website concept only',footerDisclaimer:'Stock images depict other locations and people. All text is provisional.'
+        },
+        es: {
+          notice:'VISTA PREVIA · IMÁGENES Y TEXTOS DE EJEMPLO · NO ES EL SITIO OFICIAL',
+          navHome:'Inicio',navAbout:'Nosotros',navVisit:'Planea tu visita',navConnect:'Conéctate',navContact:'Contacto',previewSmall:'Diseño conceptual · Datos por confirmar',
+          heroEyebrow:'Bienvenidos a El Paso Hills Church',heroTitle:'Aquí hay un<br/><em>lugar para ti.</em>',heroDescription:'Un lugar para crecer en la fe, crear lazos significativos y encontrar comunidad. Sin importar en qué etapa estés, aquí eres bienvenido.',heroPrimary:'Planea tu visita',heroSecondary:'Conoce nuestra iglesia',heroFootLeft:'UNA COMUNIDAD · UNA FE COMPARTIDA',scroll:'SIGUE EXPLORANDO',
+          photoCaption:'Un ejemplo de comunidad · Fotografía ilustrativa',aboutEyebrow:'Bienvenido a casa',aboutTitle:'La fe es un camino.<br/><em>Recorrámoslo juntos.</em>',aboutLead:'Más que un lugar al cual asistir, una comunidad a la cual pertenecer.',aboutBody:'Cada historia importa. Cada persona importa. Imaginamos un espacio para crecer, hacer preguntas, formar amistades y encontrar un propósito más profundo.',pillar1:'Fe',pillar2:'Comunidad',pillar3:'Propósito',
+          visitEyebrow:'Tu primera visita',visitTitle:'Ven tal como eres.<br/><em>Nos alegra recibirte.</em>',visitIntro:'Visitar una iglesia debe sentirse acogedor. Aquí encontrarás todo lo que necesitas saber antes de venir.',timesTitle:'Horarios',timesDescription:'Aquí se publicarán los horarios de los servicios.',locationTitle:'Encuéntranos',locationDescription:'Aquí aparecerán la dirección y las indicaciones.',expectTitle:'Qué esperar',expectDescription:'Una guía para quienes nos visitan por primera vez, con información real de la iglesia.',toBeAdded:'Información por agregar',
+          quoteEyebrow:'Una invitación sencilla',quote:'Ven con preguntas.<br/>Encuentra <em>conexión.</em>',quoteSub:'Mensaje de ejemplo por revisar con la iglesia',
+          connectEyebrow:'Mantente conectado',connectTitle:'La vida es mejor<br/><em>en comunidad.</em>',connectIntro:'A medida que la iglesia amplíe su presencia digital, estas secciones podrán activarse una por una.',feature1Title:'Predicaciones',feature1Body:'Mira los mensajes más recientes y vuelve a escuchar enseñanzas importantes.',feature2Title:'Ministerios',feature2Body:'Descubre oportunidades para crecer, servir y crear amistades.',feature3Title:'Eventos',feature3Body:'Entérate de reuniones, servicios especiales y eventos comunitarios.',futureFeature:'Función planeada',
+          cityEyebrow:'El Paso Hills Church',cityTitle:'Tu próximo capítulo<br/><em>empieza aquí.</em>',cityBody:'La dirección, los datos de contacto y las redes sociales de la iglesia se agregarán cuando estén disponibles.',
+          footerTag:'Un lugar para pertenecer. Una fe para crecer.',footerExplore:'Explorar',footerInfo:'Información',footerTimes:'Horarios: próximamente',footerAddress:'Dirección: próximamente',footerContact:'Contacto: próximamente',footerConcept:'Solo diseño conceptual',footerDisclaimer:'Las imágenes son ilustrativas y muestran otros lugares y personas. Todo el texto es provisional.'
+        }
+      };
+      const el = (id) => document.getElementById(id);
+      function setLanguage(lang) {
+        if (!translations[lang]) return;
+        const dictionary = translations[lang];
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-i18n]').forEach(node => {
+          const key = node.getAttribute('data-i18n');
+          if (key === 'scroll') { // preserve the decorative arrow while changing text
+            const arrow = node.querySelector('svg');
+            node.textContent = dictionary[key] + ' ';
+            if (arrow) node.appendChild(arrow);
+          } else if (dictionary[key] !== undefined) node.textContent = dictionary[key];
+        });
+        document.querySelectorAll('[data-i18n-html]').forEach(node => {
+          const key = node.getAttribute('data-i18n-html');
+          if (dictionary[key] !== undefined) node.innerHTML = dictionary[key]; // trusted, fixed in-file translations only
+        });
+        ['en','es'].forEach(code => { const button = el('lang-'+code); button.classList.toggle('active',code===lang); button.setAttribute('aria-pressed',String(code===lang)); });
+        el('menu-toggle').setAttribute('aria-label',lang==='es'?'Abrir navegación':'Open navigation');
+        document.title = lang==='es'?'El Paso Hills Church | Vista previa':'El Paso Hills Church | Website Concept';
+        try { localStorage.setItem('ephc-lang',lang); } catch (_) {}
+      }
+      const menu = el('mobile-menu'); const toggle = el('menu-toggle');
+      function closeMenu() { menu.classList.remove('open'); menu.setAttribute('aria-hidden','true'); toggle.setAttribute('aria-expanded','false'); document.body.classList.remove('menu-open'); toggle.setAttribute('aria-label',document.documentElement.lang==='es'?'Abrir navegación':'Open navigation'); }
+      toggle.addEventListener('click',()=>{ const opening=!menu.classList.contains('open'); menu.classList.toggle('open',opening); menu.setAttribute('aria-hidden',String(!opening)); toggle.setAttribute('aria-expanded',String(opening)); document.body.classList.toggle('menu-open',opening); toggle.setAttribute('aria-label',opening?(document.documentElement.lang==='es'?'Cerrar navegación':'Close navigation'):(document.documentElement.lang==='es'?'Abrir navegación':'Open navigation')); });
+      menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));
+      window.addEventListener('keydown',event=>{ if(event.key==='Escape') closeMenu(); });
+      window.addEventListener('resize',()=>{ if(window.innerWidth>760) closeMenu(); });
+      el('lang-en').addEventListener('click',()=>setLanguage('en'));
+      el('lang-es').addEventListener('click',()=>setLanguage('es'));
+      el('year').textContent = new Date().getFullYear();
+      let initial='en'; try { if(localStorage.getItem('ephc-lang')==='es') initial='es'; } catch (_) {}
+      setLanguage(initial);
+      if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const observer = new IntersectionObserver(entries=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('in-view'); observer.unobserve(entry.target); }}); },{threshold:.09});
+        document.querySelectorAll('.reveal').forEach(node=>observer.observe(node));
+      } else document.querySelectorAll('.reveal').forEach(node=>node.classList.add('in-view'));
+    })();
+  </script>
+</body>
+</html>
